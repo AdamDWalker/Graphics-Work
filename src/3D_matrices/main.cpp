@@ -408,7 +408,7 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 void preRender()
 {
 	glViewport(0, 0, 600, 600); //set viewpoint
-	glClearColor(1.0f, 0.0f, 0.0f, 1.0f); //set clear colour
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //set clear colour
 	glClear(GL_COLOR_BUFFER_BIT); //clear the window (technical the scissor box bounds)
 }
 // end::preRender[]
@@ -432,10 +432,10 @@ void render()
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
-	//set modelMatrix and draw for triangle 2
+	/*set modelMatrix and draw for triangle 2
 	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 3);*/
 
 	glBindVertexArray(0);
 
