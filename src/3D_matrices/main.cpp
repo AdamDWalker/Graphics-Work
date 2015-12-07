@@ -286,9 +286,9 @@ void initializeProgram()
 	projectionMatrixLocation = glGetUniformLocation(theProgram, "projectionMatrix");
 
 	//only generates runtime code in debug mode
-	assert( modelMatrixLocation != -1);
-	assert( viewMatrixLocation != -1);
-	assert( projectionMatrixLocation != -1);
+	SDL_assert_release( modelMatrixLocation != -1);
+	SDL_assert_release( viewMatrixLocation != -1);
+	SDL_assert_release( projectionMatrixLocation != -1);
 	// end::glGetUniformLocation[]
 
 	//clean up shaders (we don't need them anymore as they are no in theProgram
@@ -421,10 +421,10 @@ void render()
 	glBindVertexArray(vertexArrayObject);
 
 	//set projectionMatrix - how we go from 3D to 2D
-	glUniformMatrix4fv(projectionMatrixLocation, 0, false, glm::value_ptr(glm::mat4(1.0f)));
+	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0)));
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
-	glUniformMatrix4fv(viewMatrixLocation, 0, false, glm::value_ptr(glm::mat4(1.0f)));
+	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
 
 
 	//set modelMatrix and draw for triangle 1
@@ -476,8 +476,6 @@ int main( int argc, char* args[] )
 	initGlew();
 
 	glViewport(0,0,600,600); //should check what the actual window res is?
-
-	SDL_GL_SwapWindow(win); //force a swap, to make the trace clearer
 
 	//do stuff that only needs to happen once
 	//- create shaders
