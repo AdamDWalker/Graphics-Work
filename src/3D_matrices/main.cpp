@@ -69,10 +69,59 @@ bool done = false;
 // tag::vertexData[]
 //the data about our geometry
 const GLfloat vertexData[] = {
-//	 X        Y            Z          R     G     B      A
+/*	 X        Y            Z       R     G     B      A
 	 0.000f,  0.500f,  0.000f,    1.0f, 0.0f, 0.0f,  1.0f,
 	-0.433f, -0.250f,  0.000f,    0.0f, 1.0f, 0.0f,  1.0f,
-	 0.433f, -0.250f,  0.000f,    0.0f, 0.0f, 1.0f,  1.0f
+	 0.433f, -0.250f,  0.000f,    0.0f, 0.0f, 1.0f,  1.0f,*/
+
+//	  X			Y      Z       R       G       B       A
+	// Front Side
+	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.5f,    0.5f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+	-0.5f,   -0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
+	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+
+	// Back Side
+	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.5f,    0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+	 0.5f,   -0.5f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7 
+	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.5f,   -0.5f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+
+	// Left Side
+	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	-0.5f,   -0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
+	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+
+	// Right Side
+	 0.5f,    0.5f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+	 0.5f,   -0.5f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+	 0.5f,    0.5f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+	 0.5f,   -0.5f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+	 0.5f,    0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+
+	// Top Side
+	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.5f,    0.5f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.5f,    0.5f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.5f,    0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+
+	// Bottom Side
+	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+	-0.5f,   -0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
+	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	 0.5f,   -0.5f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
 };
 // end::vertexData[]
 
@@ -410,9 +459,12 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 // tag::preRender[]
 void preRender()
 {
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
 	glViewport(0, 0, 600, 600); //set viewpoint
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //set clear colour
-	glClear(GL_COLOR_BUFFER_BIT); //clear the window (technical the scissor box bounds)
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear the window (technical the scissor box bounds)
 }
 // end::preRender[]
 
@@ -432,9 +484,9 @@ void render()
 
 	//set modelMatrix and draw for triangle 1
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 1));
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 1));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	/*set modelMatrix and draw for triangle 2
 	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
