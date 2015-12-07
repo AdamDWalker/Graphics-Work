@@ -101,6 +101,8 @@ GLint projectionMatrixLocation;
 
 GLuint vertexDataBufferObject;
 GLuint vertexArrayObject;
+
+GLfloat rotateAngle = 1.0f;
 // end::GLVariables[]
 
 
@@ -400,6 +402,7 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 
 	position1 += float(simLength) * velocity1;
 	position2 += float(simLength) * velocity2;
+	rotateAngle += simLength * 2;
 
 }
 // end::updateSimulation[]
@@ -429,6 +432,7 @@ void render()
 
 	//set modelMatrix and draw for triangle 1
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 1));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
