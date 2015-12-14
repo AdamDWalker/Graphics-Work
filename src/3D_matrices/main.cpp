@@ -121,9 +121,7 @@ const GLfloat vertexData[] = {
 	-0.25f,   -0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
 	 0.25f,   -0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
 // ============================ End of Cube 1 ===============================
-
 #pragma endregion Cube 1
-
 
 
 #pragma region
@@ -185,7 +183,7 @@ const GLfloat vertexData[] = {
 // tag::gameState[]
 //the translation vector we'll pass to our GLSL program
 glm::vec3 position1 = { -0.5f, -0.5f, 0.0f};
-glm::vec3 velocity1 = { 0.1f, 0.1f, 0.0f};
+glm::vec3 velocity1 = { 0.0f, 0.0f, 0.0f};
 
 glm::vec3 position2 = { 0.8f, -0.5f , 0.0f};
 glm::vec3 velocity2 = { -0.2f, 0.15f, 0.0f};
@@ -493,7 +491,51 @@ void handleInput()
 				{
 					//hit escape to exit
 					case SDLK_ESCAPE: done = true;
+
+					case SDLK_a:
+						// Move bat one left
+						velocity1.x -= 0.5f;
+						break;
+					case SDLK_d:
+						// move bat one right
+						velocity1.x += 0.5f;
+						break;
+					case SDLK_LEFT:
+						// move bat 2 left
+						break;
+					case SDLK_RIGHT:
+						// move bat 2 right
+						break;
 				}
+
+			break;
+
+		case SDL_KEYUP:
+			//Keydown can fire repeatable if key-repeat is on.
+			//  - the repeat flag is set on the keyboard event, if this is a repeat event
+			//  - in our case, we're going to ignore repeat events
+			//  - https://wiki.libsdl.org/SDL_KeyboardEvent
+			if (!event.key.repeat)
+				switch (event.key.keysym.sym)
+				{
+
+					case SDLK_a:
+						// Reset bat 1 movement to stop it when key is released
+						velocity1.x += 0.5f;
+
+						break;
+					case SDLK_d:
+						// Reset bat 1 movement to stop it when key is released
+						velocity1.x -= 0.5f;
+						break;
+					case SDLK_LEFT:
+						//
+						break;
+					case SDLK_RIGHT:
+						//
+						break;
+				}
+
 			break;
 		}
 	}
@@ -540,14 +582,15 @@ void render()
 
 
 	//set modelMatrix and draw for triangle 1
-	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 1));
+	glm::mat4 modelMatrix =// glm::mat4(1.0);
+		glm::translate(glm::mat4(1.0f), position1);
+	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 	// Second cube here - Not ready yet
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 0, 0));
+	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 36, 72);
 
