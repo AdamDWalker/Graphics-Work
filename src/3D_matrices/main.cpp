@@ -130,52 +130,52 @@ const GLfloat vertexData[] = {
 // ============================ Cube 2 ===============================
 //	  X			Y      Z       R       G       B       A
 // Front Side
-	-0.5f,	  0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
-	 0.5f,    0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
-	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
-	-0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
-	-0.5f,	  0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
-	 0.5f,   -0.5f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+	-0.25f,	   0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+	 0.25f,    0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+	 0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+	-0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+	-0.25f,	   0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+	 0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
 
 // Back Side
-	-0.5f,	  0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
-	 0.5f,    0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
-	 0.5f,   -0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 7 
-	-0.5f,   -0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
-	-0.5f,	  0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
- 	 0.5f,   -0.5f,   1.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+	-0.25f,	   0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
+	 0.25f,    0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7 
+	-0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
+	-0.25f,	   0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
+ 	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
 
 // Left Side
-	-0.5f,	  0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
-	-0.5f,   -0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
-	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
-	-0.5f,	  0.5f,   0.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
-	-0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
-	-0.5f,	  0.5f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 5
+	-0.25f,	   0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
+	-0.25f,   -0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
+	-0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	-0.25f,	   0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
+	-0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+	-0.25f,	   0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 5
 
 // Right Side
-	0.5f,    0.5f,   0.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
-	0.5f,   -0.5f,   0.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 3
-	0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
-	0.5f,    0.5f,   0.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
-	0.5f,   -0.5f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
-	0.5f,    0.5f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 6
+	0.25f,    0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
+	0.25f,   -0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 3
+	0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
+	0.25f,    0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
+	0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
+	0.25f,    0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 6
 
 // Top Side
-	-0.5f,	  0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
-	 0.5f,    0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
-	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.5f,    0.5f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
-	-0.5f,	  0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.5f,    0.5f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
+	-0.25f,	   0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.25f,    0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
+	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.25f,    0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
+	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+	 0.25f,    0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
 
 // Bottom Side
-	 0.5f,   -0.5f,   0.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
-	-0.5f,   -0.5f,   0.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 4
-	-0.5f,   -0.5f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
-	 0.5f,   -0.5f,   0.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
-	-0.5f,   -0.5f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
-	 0.5f,   -0.5f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 7
+	 0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
+	-0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 4
+	-0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
+	 0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
+	-0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
+	 0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 7
 // ============================ End of Cube 2 ===============================
 #pragma endregion Cube 2
 
@@ -506,7 +506,7 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 	//WARNING - we should calculate an appropriate amount of time to simulate - not always use a constant amount of time
 			// see, for example, http://headerphile.blogspot.co.uk/2014/07/part-9-no-more-delays.html
 
-	position1 += float(simLength) * velocity1;
+	position1 += float(simLength) * velocity1 ;
 	position2 += float(simLength) * velocity2;
 	rotateAngle += simLength * 2;
 
@@ -533,23 +533,23 @@ void render()
 	glBindVertexArray(vertexArrayObject);
 
 	//set projectionMatrix - how we go from 3D to 2D
-	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0)));
+	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::perspective(90.0f, 1.0f, 0.1f, 100.0f))); // http://stackoverflow.com/questions/8115352/glmperspective-explanation
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
-	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
+	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
 
 
 	//set modelMatrix and draw for triangle 1
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 1, 1));
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 1));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 	// Second cube here - Not ready yet
-	/*modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 0, 1));
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 36, 72);*/
+	glDrawArrays(GL_TRIANGLES, 36, 72);
 
 
 	/*set modelMatrix and draw for triangle 2
