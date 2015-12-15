@@ -175,61 +175,114 @@ const GLfloat vertexData[] = {
 		 0.5f,   -0.25f,   2.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
 	// ============================ End of Cube 2 ===============================
 #pragma endregion Blue + White Paddle
-
-#pragma region 
-// ============================= Left Boundary ===========================
-		-0.05f,	  2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 1
-		 0.05f,   2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 2
-		 0.05f,  -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 3 
-		-0.05f,  -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 4
-		-0.05f,	  2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 1
-		 0.05f,  -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 3
-
-		// Back Side
-		-0.05f,	   2.0f,   3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 5
-		 0.05f,    2.0f,   3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 6
-		 0.05f,   -0.25f,  3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 7 
-		-0.05f,   -0.25f,  3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 8
-		-0.05f,	   2.0f,   3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 5
-		 0.05f,   -0.25f,  3.0f,   0.2f,   0.2f,   0.2f,   1.0f, // 7
-
-		// Left Side
-		-0.05f,	  2.0f,   -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 1
-		-0.05f,  -0.25f,  -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 4
-		-0.05f,  -0.25f,   3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 8
-		-0.05f,	  2.0f,   -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 1
-		-0.05f,  -0.25f,   3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 8
-		-0.05f,	  2.0f,    3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 5
-
-		// Right Sid
-		 0.05f,    2.0f,  -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 2
-		 0.05f,   -0.25f, -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 3
-		 0.05f,   -0.25f,  3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 7
-		 0.05f,    2.0f,  -3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 2
-		 0.05f,   -0.25f,  3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 7
-		 0.05f,    2.0f,   3.0f,   0.0f,   0.5f,   0.7f,   1.0f, // 6
-
-		// Top Side
-		-0.05f,	  2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 1
-		 0.05f,   2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 2
-		-0.05f,	  2.0f,	   3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 5
-		 0.05f,   2.0f,   -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 2
-		-0.05f,	  2.0f,	   3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 5
-		 0.05f,   2.0f,	   3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 6
-
-		// Bottom Side
-		-0.05f,   -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 3 
-		-0.05f,   -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 4
-		-0.05f,   -0.25f,	3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 8
-		 0.05f,   -0.25f,  -3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 3 
-		-0.05f,   -0.25f,	3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 8
-		 0.05f,   -0.25f,   3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 7
-
-#pragma endregion Left / Right Boundary
 };
 
+const GLfloat boundsVertexData[] = {
 #pragma region 
+	// ============================= Left / Right Boundary ===========================
+		-0.05f,  0.5f,  -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+		 0.05f,  0.5f,  -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 2
+		 0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 3 
+		-0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 4
+		-0.05f,  0.5f,  -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+		 0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 3
+
+// Back Side
+		-0.05f,  0.5f,  3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 5
+		 0.05f,  0.5f,  3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 6
+		 0.05f, -0.25f, 3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 7 
+		-0.05f, -0.25f, 3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 8
+		-0.05f,  0.5f,  3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 5
+		 0.05f, -0.25f, 3.0f, 0.2f, 0.2f, 0.2f, 1.0f, // 7
+
+// Left Side
+		-0.05f,  0.5f,  -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 1
+		-0.05f, -0.25f, -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 4
+		-0.05f, -0.25f,  3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 8
+		-0.05f,  0.5f,  -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 1
+		-0.05f, -0.25f,  3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 8
+		-0.05f,  0.5f,   3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 5
+
+// Right Side
+		0.05f,  0.5f,  -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 2
+		0.05f, -0.25f, -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 3
+		0.05f, -0.25f,  3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 7
+		0.05f,  0.5f,  -3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 2
+		0.05f, -0.25f,  3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 7
+		0.05f,  0.5f,   3.0f, 0.0f, 0.5f, 0.7f, 1.0f, // 6
+
+// Top Side
+		-0.05f, 0.5f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+		 0.05f, 0.5f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 2
+		-0.05f, 0.5f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+		 0.05f, 0.5f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 2
+		-0.05f, 0.5f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+		 0.05f, 0.5f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 6
+
+// Bottom Side
+		-0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 3 
+		-0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 4
+		-0.05f, -0.25f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+		 0.05f, -0.25f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 3 
+		-0.05f, -0.25f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+		 0.05f, -0.25f,  3.0f, 0.0f, 0.0f, 0.0f, 1.0f, // 7
+
+	#pragma endregion Left / Right Boundary
+
+#pragma region
+// ============================= Top / Bottom Boundary ===========================
+	-2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 1
+	 2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 2
+	 2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 3 
+	-2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 4
+	-2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 1
+	 2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 3
+
+// Back Side
+	-2.5f,  0.5f,  0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 5
+	 2.5f,  0.5f,  0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 6
+	 2.5f, -0.25f, 0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 7 
+	-2.5f, -0.25f, 0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 8
+	-2.5f,  0.5f,  0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 5
+	 2.5f, -0.25f, 0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 7
+
+ // Left Side
+	-2.5f,  0.5f,  -0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 1
+	-2.5f, -0.25f, -0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 4
+	-2.5f, -0.25f,  0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 8
+	-2.5f,  0.5f,  -0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 1
+	-2.5f, -0.25f,  0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 8
+	-2.5f,  0.5f,   0.1f, 0.0f, 0.5f, 0.7f, 1.0f, // 5
+
+// Right Side
+	2.5f,  0.5f,  -0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 2
+	2.5f, -0.25f, -0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 3
+	2.5f,  0.5f,   0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 7
+	2.5f,  0.5f,  -0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 2
+	2.5f, -0.25f,  0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 7
+	2.5f,  0.5f,   0.1f,  0.0f,  0.5f, 0.7f, 1.0f, // 6
+
+// Top Side
+	-2.5f, 0.5f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+	 2.5f, 0.5f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 2
+	-2.5f, 0.5f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+	 2.5f, 0.5f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 2
+	-2.5f, 0.5f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+	 2.5f, 0.5f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 6
+
+// Bottom Side
+	-2.5f, -0.25f, -0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 3 
+	-2.5f, -0.25f, -0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 4
+	-2.5f, -0.25f,  0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 8
+	 2.5f, -0.25f, -0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 3 
+	-2.5f, -0.25f,  0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 8
+  	 2.5f, -0.25f,  0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 7
+#pragma endregion Top / Bottom Bounds
+
+};
+
 const GLfloat ballVertexData[] = {
+#pragma region 
 
 	//	  X			Y      Z       R       G       B       A
 	// Front Side
@@ -279,9 +332,9 @@ const GLfloat ballVertexData[] = {
 		 0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
 		-0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
 		 0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 7
-};
 
 #pragma endregion Ball Data
+};
 
 // end::vertexData[]
 
@@ -314,11 +367,17 @@ GLint modelMatrixLocation;
 GLint viewMatrixLocation;
 GLint projectionMatrixLocation;
 
+// These are for the bats
 GLuint vertexDataBufferObject;
 GLuint vertexArrayObject;
 
+// These are for the Ball
 GLuint vertexDataBufferObject2;
 GLuint vertexArrayObject2;
+
+// These are for the Bounds
+GLuint vertexDataBufferObject3;
+GLuint vertexArrayObject3;
 
 GLfloat rotateAngle = 1.0f;
 // end::GLVariables[]
@@ -534,15 +593,32 @@ void initializeVertexArrayObject()
 		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *) (3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
 		// end::glVertexAttribPointer[]
 
-	// ============================================= This is the second VAO -- To be used for the Ball ===================================================
+// ============================================= This is the second VAO -- To be used for the Ball ===================================================
 	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
 
 		glGenVertexArrays(1, &vertexArrayObject2); //create a Vertex Array Object
 		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject << std::endl;
 
 		glBindVertexArray(vertexArrayObject2); //make the just created vertexArrayObject the active one
-
 		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject2); //bind vertexDataBufferObject
+
+		glEnableVertexAttribArray(positionLocation); //enable attribute at index positionLocation
+		glEnableVertexAttribArray(vertexColorLocation); //enable attribute at index vertexColorLocation
+
+		// tag::glVertexAttribPointer[]
+		glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(0 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index positionLocation
+		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
+																																// end::glVertexAttribPointer[]
+	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
+
+// ============================================= This is the third VAO -- To be used for the Bounds ===================================================
+	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
+
+		glGenVertexArrays(1, &vertexArrayObject3); //create a Vertex Array Object
+		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject << std::endl;
+
+		glBindVertexArray(vertexArrayObject3); //make the just created vertexArrayObject the active one
+		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject3); //bind vertexDataBufferObject
 
 		glEnableVertexAttribArray(positionLocation); //enable attribute at index positionLocation
 		glEnableVertexAttribArray(vertexColorLocation); //enable attribute at index vertexColorLocation
@@ -577,6 +653,13 @@ void initializeVertexBuffer()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(ballVertexData), ballVertexData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	cout << "vertexDataBufferObject 2 created OK! GLUint is: " << vertexDataBufferObject2 << std::endl;
+
+	glGenBuffers(1, &vertexDataBufferObject3);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject3);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(boundsVertexData), boundsVertexData, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	cout << "vertexDataBufferObject 3 created OK! GLUint is: " << vertexDataBufferObject2 << std::endl;
 
 	initializeVertexArrayObject();
 }
@@ -736,6 +819,7 @@ void render()
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
 	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position2.x, position2.y + 1.5f, position2.z + 4.0f), position2, glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
+	//glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(2.0f, 3.5f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
 
 
 	// First Bat here
@@ -748,17 +832,31 @@ void render()
 	// Second bat here
 	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 36, 38 );
+	glDrawArrays(GL_TRIANGLES, 36, 78 );
 
+	glBindVertexArray(vertexArrayObject3); // This is for the boundaries
+
+	boundPosition.z = 0.0f;
 	boundPosition.x = -2.5f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 72, 78);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	boundPosition.x = 2.5f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 72, 78);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	boundPosition.x = 0.0f;
+	boundPosition.z = -3.0f;
+	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
+	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+	glDrawArrays(GL_TRIANGLES, 36, 78);
+
+	boundPosition.z = 3.0f;
+	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
+	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+	glDrawArrays(GL_TRIANGLES, 36, 78);
 
 	glBindVertexArray(vertexArrayObject2);
 
