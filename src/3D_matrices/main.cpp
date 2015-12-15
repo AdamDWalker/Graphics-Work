@@ -227,6 +227,56 @@ const GLfloat vertexData[] = {
 
 #pragma endregion Left Boundary
 
+#pragma region
+	// Front Side
+   -0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
+	0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 2
+	0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3 
+   -0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 4
+   -0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
+	0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3
+													  
+	// Back Side
+   -0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
+	0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 6
+	0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7 
+   -0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 8
+   -0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
+	0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7
+
+// Left Side
+	-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+	-0.1f, -0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 4
+	-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+	-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+	-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+	-0.1f,  0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+
+// Right Sid
+	0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
+	0.1f, -0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 3
+	0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
+	0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
+	0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
+	0.1f,  0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 6
+
+// Top Side
+   -0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 1
+	0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
+   -0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
+	0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
+   -0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
+	0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 6
+
+// Bottom Side
+	0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
+   -0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 4
+   -0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
+	0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
+   -0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
+	0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 7
+#pragma endregion Ball
+
 };
 // end::vertexData[]
 
@@ -241,7 +291,6 @@ glm::vec3 velocity2 = { 0.0f, 0.0f, 0.0f };
 
 glm::vec3 ballPosition = { 0.0f, 0.0f, 0.0f };
 glm::vec3 ballVelocity = { 0.0f, 0.0f, 0.0f};
-
 
 glm::vec3 boundPosition = { 0.0f, 0.0f , 0.0f };
 // end::gameState[]
@@ -650,7 +699,7 @@ void render()
 	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::perspective(90.0f, 1.0f, 0.1f, 100.0f))); // http://stackoverflow.com/questions/8115352/glmperspective-explanation
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
-	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 1.4f, 3.3f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
+	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(3.0f, 4.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
 
 
 	// First Bat here
@@ -674,6 +723,11 @@ void render()
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 72, 108);
+
+	modelMatrix = glm::translate(glm::mat4(1.0f), ballPosition);
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 1, 0));
+	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+	glDrawArrays(GL_TRIANGLES, 108, 144);
 
 
 	/*set modelMatrix and draw for triangle 2
