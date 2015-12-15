@@ -71,122 +71,173 @@ bool done = false;
 const GLfloat vertexData[] = {
 
 #pragma region
-// ============================ Cube 1 ===============================
-//	  X			Y      Z       R       G       B       A
-	// Front Side
-	-0.25f,	   0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
-	 0.25f,    0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
-	 0.25f,   -0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 4
-	-0.25f,	   0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
-	 0.25f,   -0.25f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3
+	// ============================ Red + Black Paddle ===============================
+	//	  X			Y      Z       R       G       B       A
+		// Front Side
+		-0.5f,	  0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+		 0.5f,    0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 4
+		-0.5f,	  0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+		 0.5f,   -0.25f,   -3.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 3
 
-	// Back Side
-	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.25f,    0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
-	 0.25f,   -0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 7 
-	-0.25f,   -0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.25f,   -0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 7
+		// Back Side
+		-0.5f,	  0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+		 0.5f,    0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
+		 0.5f,   -0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 7 
+		-0.5f,   -0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+		 0.5f,   -0.25f,   -3.3f,   1.0f,   0.0f,   0.0f,   1.0f, // 7
 
-	// Left Side
-	-0.25f,	   0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
-	-0.25f,   -0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 4
-	-0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
-	-0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
+		// Left Side
+		-0.5f,	  0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
+		-0.5f,   -0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 4
+		-0.5f,   -0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
+		-0.5f,   -0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
 
-	// Right Side
-	 0.25f,    0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
-	 0.25f,   -0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 3
-	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
-	 0.25f,    0.25f,   0.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
-	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
-	 0.25f,    0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+		// Right Sid
+		 0.5f,    0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 3
+		 0.5f,   -0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+		 0.5f,    0.25f,   -3.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+		 0.5f,    0.25f,   -3.3f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
 
-	// Top Side
-	-0.25f,	   0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
-	 0.25f,    0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
-	-0.25f,	   0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
-	 0.25f,    0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
-	-0.25f,	   0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
-	 0.25f,    0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 6
+		// Top Side
+		-0.5f,	  0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+		 0.5f,    0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-0.5f,	  0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		 0.5f,    0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-0.5f,	  0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		 0.5f,    0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 6
 
-	// Bottom Side
-	 0.25f,   -0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
-	-0.25f,   -0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
-	 0.25f,   -0.25f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
-	 0.25f,   -0.25f,   0.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
-// ============================ End of Cube 1 ===============================
-#pragma endregion Cube 1
-
+		// Bottom Side
+		 0.5f,   -0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+		-0.5f,   -0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		 0.5f,   -0.25f,   -3.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		 0.5f,   -0.25f,   -3.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+	// ============================ End of Cube 1 ===============================
+	#pragma endregion Red + Black Paddle
 
 #pragma region
-// ============================ Cube 2 ===============================
-//	  X			Y      Z       R       G       B       A
-// Front Side
-	-0.25f,	   0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
-	 0.25f,    0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
-	 0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
-	-0.25f,	   0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
-	 0.25f,   -0.25f,   1.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+	// ============================ Blue + White paddle ===============================
+	//	  X			Y      Z       R       G       B       A
+	// Front Side
+		-0.5f,	  0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+		 0.5f,    0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+		-0.5f,	  0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+		 0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
 
-// Back Side
-	-0.25f,	   0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
-	 0.25f,    0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
-	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7 
-	-0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
- 	 0.25f,   -0.25f,   0.5f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+	// Back Side
+		-0.5f,	  0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		 0.5f,    0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 6
+		 0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7 
+		-0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+ 		 0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
 
-// Left Side
-	-0.25f,	   0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
-	-0.25f,   -0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
-	-0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   1.0f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
-	-0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
-	-0.25f,	   0.25f,   0.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 5
+	// Left Side
+		-0.5f,	  0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
+		-0.5f,   -0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 4
+		-0.5f,   -0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 1
+		-0.5f,   -0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 8
+		-0.5f,	  0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 5
 
-// Right Side
-	0.25f,    0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
-	0.25f,   -0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 3
-	0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
-	0.25f,    0.25f,   1.0f,   1.0f,   1.0f,   0.0f,   1.0f, // 2
-	0.25f,   -0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 7
-	0.25f,    0.25f,   0.5f,   1.0f,   1.0f,   0.0f,   1.0f, // 6
+	// Right Side
+		 0.5f,    0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 3
+		 0.5f,   -0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 7
+		 0.5f,    0.25f,   1.3f,   1.0f,   1.0f,   1.0f,   1.0f, // 2
+		 0.5f,   -0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 7
+		 0.5f,    0.25f,   1.5f,   1.0f,   1.0f,   1.0f,   1.0f, // 6
 
-// Top Side
-	-0.25f,	   0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
-	 0.25f,    0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
-	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.25f,    0.25f,   1.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
-	-0.25f,	   0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
-	 0.25f,    0.25f,   0.5f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
+	// Top Side
+		-0.5f,	  0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+		 0.5f,    0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-0.5f,	  0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		 0.5f,    0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-0.5f,    0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		 0.5f,    0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 6
 
-// Bottom Side
-	 0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 4
-	-0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
-	 0.25f,   -0.25f,   1.0f,   1.0f,   0.4f,   0.0f,   1.0f, // 3 
-	-0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 8
-	 0.25f,   -0.25f,   0.5f,   1.0f,   0.4f,   0.0f,   1.0f, // 7
-// ============================ End of Cube 2 ===============================
-#pragma endregion Cube 2
+	// Bottom Side
+		 0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+		-0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		 0.5f,   -0.25f,   1.3f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		 0.5f,   -0.25f,   1.5f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+	// ============================ End of Cube 2 ===============================
+#pragma endregion Blue + White Paddle
+
+#pragma region 
+// ============================= Left Boundary ===========================
+		-3.2f,	  0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+		-3.0f,    0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
+		-3.0f,   -0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3 
+		-3.2f,   -0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 4
+		-3.2f,	  0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+		-3.0f,   -0.25f,   -4.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3
+
+		// Back Side
+		-3.2f,	  0.25f,    2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+		-3.0f,    0.25f,    2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 6
+		-3.0f,   -0.25f,	2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 7 
+		-3.2f,   -0.25f,	2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 8
+		-3.2f,	  0.25f,	2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 5
+		-3.0f,   -0.25f,	2.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 7
+
+		// Left Side
+		-3.2f,	  0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
+		-3.2f,   -0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 4
+		-3.2f,   -0.25f,	2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
+		-3.2f,	  0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 1
+		-3.2f,   -0.25f,	2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 8
+		-3.2f,	  0.25f,	2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 5
+
+		// Right Sid
+		-3.0f,    0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+		-3.0f,   -0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 3
+		-3.0f,   -0.25f,	2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+		-3.0f,    0.25f,   -4.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 2
+		-3.0f,   -0.25f,    2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 7
+		-3.0f,    0.25f,	2.0f,   0.0f,   1.0f,   0.0f,   1.0f, // 6
+
+		// Top Side
+		-3.2f,	  0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+		-3.0f,    0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-3.2f,	  0.25f,	2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		-3.0f,    0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+		-3.2f,	  0.25f,	2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 5
+		-3.0f,    0.25f,	2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 6
+
+		// Bottom Side
+		-3.2f,   -0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-3.2f,   -0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+		-3.2f,   -0.25f,	2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		-3.0f,   -0.25f,   -4.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+		-3.2f,   -0.25f,	2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 8
+		-3.0f,   -0.25f,    2.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 7
+
+#pragma endregion Left Boundary
 
 };
 // end::vertexData[]
 
 // tag::gameState[]
 //the translation vector we'll pass to our GLSL program
+// These are changed in update simulation, the velocity vectors are altered by keypress input to determine movement
 glm::vec3 position1 = { -0.5f, -0.5f, 0.0f};
 glm::vec3 velocity1 = { 0.0f, 0.0f, 0.0f};
 
 glm::vec3 position2 = { 0.8f, -0.5f , 0.0f};
-glm::vec3 velocity2 = { -0.2f, 0.15f, 0.0f};
+glm::vec3 velocity2 = { 0.0f, 0.0f, 0.0f};
 // end::gameState[]
 
 // tag::GLVariables[]
@@ -236,7 +287,7 @@ void createWindow()
 	const char *exeNameCStr = exeNameEnd.c_str();
 
 	//create window
-	win = SDL_CreateWindow(exeNameCStr, 100, 100, 600, 600, SDL_WINDOW_OPENGL); //same height and width makes the window square ...
+	win = SDL_CreateWindow(exeNameCStr, 100, 100, 800, 600, SDL_WINDOW_OPENGL); //same height and width makes the window square ...
 
 	//error handling
 	if (win == nullptr)
@@ -494,17 +545,19 @@ void handleInput()
 
 					case SDLK_a:
 						// Move bat one left
-						velocity1.x -= 0.5f;
+						velocity1.x -= 3.0f;
 						break;
 					case SDLK_d:
 						// move bat one right
-						velocity1.x += 0.5f;
+						velocity1.x += 3.0f;
 						break;
 					case SDLK_LEFT:
 						// move bat 2 left
+						velocity2.x -= 3.0f;
 						break;
 					case SDLK_RIGHT:
 						// move bat 2 right
+						velocity2.x += 3.0f;
 						break;
 				}
 
@@ -521,18 +574,19 @@ void handleInput()
 
 					case SDLK_a:
 						// Reset bat 1 movement to stop it when key is released
-						velocity1.x += 0.5f;
-
+						velocity1.x += 3.0f;
 						break;
 					case SDLK_d:
 						// Reset bat 1 movement to stop it when key is released
-						velocity1.x -= 0.5f;
+						velocity1.x -= 3.0f;
 						break;
 					case SDLK_LEFT:
-						//
+						// Reset bat 2 movement to stop when key is released
+						velocity2.x += 3.0f;
 						break;
 					case SDLK_RIGHT:
-						//
+						// Reset bat 2 movement to stop when key is released
+						velocity2.x -= 3.0f;
 						break;
 				}
 
@@ -561,7 +615,7 @@ void preRender()
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	glViewport(0, 0, 600, 600); //set viewpoint
+	glViewport(0, 0, 800, 600); //set viewpoint
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //set clear colour
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear the window (technical the scissor box bounds)
 }
@@ -578,19 +632,22 @@ void render()
 	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::perspective(90.0f, 1.0f, 0.1f, 100.0f))); // http://stackoverflow.com/questions/8115352/glmperspective-explanation
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
-	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
+	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 1.5f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
 
 
 	//set modelMatrix and draw for triangle 1
-	glm::mat4 modelMatrix =// glm::mat4(1.0);
-		glm::translate(glm::mat4(1.0f), position1);
+	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
 	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
-
+	
 	// Second cube here - Not ready yet
-	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
+	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
+	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+	glDrawArrays(GL_TRIANGLES, 36, 72);
+
+	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 36, 72);
 
@@ -638,7 +695,7 @@ int main( int argc, char* args[] )
 
 	initGlew();
 
-	glViewport(0,0,600,600); //should check what the actual window res is?
+	glViewport(0,0,800,600); //should check what the actual window res is?
 
 	//do stuff that only needs to happen once
 	//- create shaders
