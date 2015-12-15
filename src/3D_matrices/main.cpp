@@ -69,7 +69,6 @@ bool done = false;
 // tag::vertexData[]
 //the data about our geometry
 const GLfloat vertexData[] = {
-
 #pragma region
 	// ============================ Red + Black Paddle ===============================
 	//	  X			Y      Z       R       G       B       A
@@ -97,7 +96,7 @@ const GLfloat vertexData[] = {
 		-0.5f,   -0.25f,   -2.3f,   0.0f,   0.0f,   0.0f,   1.0f, // 8
 		-0.5f,	  0.25f,   -2.3f,   0.0f,   0.0f,   0.0f,   1.0f, // 5
 
-		// Right Sid
+		// Right Side
 		 0.5f,    0.25f,   -2.5f,   0.0f,   0.0f,   0.0f,   1.0f, // 2
 		 0.5f,   -0.25f,   -2.5f,   0.0f,   0.0f,   0.0f,   1.0f, // 3
 		 0.5f,   -0.25f,   -2.3f,   0.0f,   0.0f,   0.0f,   1.0f, // 7
@@ -278,7 +277,6 @@ const GLfloat boundsVertexData[] = {
 	-2.5f, -0.25f,  0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 8
   	 2.5f, -0.25f,  0.1f,  0.0f,  0.0f, 0.0f, 1.0f, // 7
 #pragma endregion Top / Bottom Bounds
-
 };
 
 const GLfloat ballVertexData[] = {
@@ -341,14 +339,14 @@ const GLfloat ballVertexData[] = {
 // tag::gameState[]
 //the translation vector we'll pass to our GLSL program
 // These are changed in update simulation, the velocity vectors are altered by keypress input to determine movement
-glm::vec3 position1 = { 0.5f, 0.0f, 0.0f};
+glm::vec3 position1 = { 0.0f, 0.0f, 0.0f};
 glm::vec3 velocity1 = { 0.0f, 0.0f, 0.0f};
 
 glm::vec3 position2 = { 0.0f, 0.0f , 0.0f};
 glm::vec3 velocity2 = { 0.0f, 0.0f, 0.0f };
 
 glm::vec3 ballPosition = { 0.0f, 0.0f, 0.0f };
-glm::vec3 ballVelocity = { 0.0f, 0.0f, 0.0f};
+glm::vec3 ballVelocity = { 2.0f, 0.0f, 1.0f};
 
 glm::vec3 boundPosition = { 0.0f, 0.0f , 0.0f };
 // end::gameState[]
@@ -380,6 +378,8 @@ GLuint vertexDataBufferObject3;
 GLuint vertexArrayObject3;
 
 GLfloat rotateAngle = 1.0f;
+GLint camView = 1; // This will determine which view the camera uses and will change on keypress
+GLfloat speed = 3.0f; // This is here so that I can change the speed of the paddles easier, it also allows me to invert the keypress controls when tracking the opposite bat
 // end::GLVariables[]
 
 
@@ -710,24 +710,47 @@ void handleInput()
 			if (!event.key.repeat)
 				switch (event.key.keysym.sym)
 				{
+
 					//hit escape to exit
 					case SDLK_ESCAPE: done = true;
 
-					case SDLK_a:
-						// Move bat one left
-						velocity1.x -= 3.0f;
-						break;
-					case SDLK_d:
-						// move bat one right
-						velocity1.x += 3.0f;
-						break;
-					case SDLK_LEFT:
-						// move bat 2 left
-						velocity2.x -= 3.0f;
-						break;
-					case SDLK_RIGHT:
-						// move bat 2 right
-						velocity2.x += 3.0f;
+							case SDLK_a:
+								// Move bat one left
+								velocity1.x -= speed;
+								break;
+							case SDLK_d:
+								// move bat one right
+								velocity1.x += speed;
+								break;
+							case SDLK_LEFT:
+								// move bat 2 left
+								velocity2.x -= speed;
+								break;
+							case SDLK_RIGHT:
+								// move bat 2 right
+								velocity2.x += speed;
+								break;
+
+					case SDLK_SPACE:
+						// Change Camera View
+						switch (camView) {
+							case 1:
+								camView = 2;
+								break;
+							case 2:
+								camView = 3;
+								break;
+							case 3:
+								camView = 4;
+								break;
+							case 4:
+								camView = 1;
+								break;
+							default:
+								camView = 1;
+								break;
+						}
+
 						break;
 				}
 
@@ -744,19 +767,19 @@ void handleInput()
 
 					case SDLK_a:
 						// Reset bat 1 movement to stop it when key is released
-						velocity1.x += 3.0f;
+						velocity1.x += speed;
 						break;
 					case SDLK_d:
 						// Reset bat 1 movement to stop it when key is released
-						velocity1.x -= 3.0f;
+						velocity1.x -= speed;
 						break;
 					case SDLK_LEFT:
 						// Reset bat 2 movement to stop when key is released
-						velocity2.x += 3.0f;
+						velocity2.x += speed;
 						break;
 					case SDLK_RIGHT:
 						// Reset bat 2 movement to stop when key is released
-						velocity2.x -= 3.0f;
+						velocity2.x -= speed;
 						break;
 				}
 
@@ -776,13 +799,9 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 	position2 += float(simLength) * velocity2;
 	rotateAngle += simLength * 2;
 
-	ballVelocity.x = 1.0f;
 	ballPosition += float(simLength) * ballVelocity;
 
 	// Check for collisions between the bats and the boundaries
-
-	// Size of the bats == -0.5 to 0.5 X axis
-
 	if (position1.x + 0.5 > 2.5)
 		position1.x = 2.0f;
 	else if (position1.x - 0.5 < -2.5)
@@ -792,6 +811,22 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 		position2.x = 2.0f;
 	else if (position2.x - 0.5 < -2.5)
 		position2.x = -2.0f;
+
+	// Check for collision with the ball and the bounds
+	if (ballPosition.x + 0.1 > 2.5 || ballPosition.x - 0.1 < -2.5)
+		ballVelocity.x *= -1.0f;
+
+	if (ballPosition.z + 0.1 > 3.0 || ballPosition.z - 0.1 < -3.0)
+		// This is a point scoring event -- TODO reset ball
+		ballVelocity.z *= -1.0f;
+
+	// Check for collisions between the ball and the bats
+	// If the outer edges of the ball are within the outer edges of the bat X coord, and the Z coords cross then that is a hit
+	if ((ballPosition.x + 0.1f > position1.x - 0.5f && ballPosition.x - 0.1f < position1.x + 0.5f) && ballPosition.z - 0.1 < -2.3f)
+		ballVelocity.z = 1;
+	else if ((ballPosition.x + 0.1f > position2.x - 0.5f && ballPosition.x - 0.1f < position2.x + 0.5f) && ballPosition.z + 0.1 > 2.3f)
+		ballVelocity.z = -1;
+
 }
 // end::updateSimulation[]
 
@@ -818,24 +853,44 @@ void render()
 	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::perspective(90.0f, 1.0f, 0.1f, 100.0f))); // http://stackoverflow.com/questions/8115352/glmperspective-explanation
 
 	//set viewMatrix - how we control the view (viewpoint, view direction, etc)
-	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position2.x, position2.y + 1.5f, position2.z + 4.0f), position2, glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
-	//glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(2.0f, 3.5f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // http://learnopengl.com/#!Getting-started/Camera
+
+	// I learned Camera stuff from here http://learnopengl.com/#!Getting-started/Camera
+	switch (camView)
+	{
+	case 1:
+		speed = 3.0f;
+		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 1.5f, 4.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Standard behind blue view
+		break;
+	case 2:
+		speed = 3.0f;
+		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(2.0f, 3.5f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Above and look down view
+		break;
+	case 3:
+		speed = -3.0f;
+		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position1.x, position2.y + 1.5f, position1.z - 4.0f), position1, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Red -- Also the controls need inverting here
+		break;
+	case 4:
+		speed = 3.0f;
+
+		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position2.x, position2.y + 1.5f, position2.z + 4.0f), position2, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Blue
+		break;
+	}
 
 
-	// First Bat here
+	// ==================================== Render the Bats ================================
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
 	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
-	
-	// Second bat here
 	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 36, 78 );
 
-	glBindVertexArray(vertexArrayObject3); // This is for the boundaries
+	// =================================== Render the Bounds ==================================
+	glBindVertexArray(vertexArrayObject3); 
 
+	// ====== Left and Right Bounds =====
 	boundPosition.z = 0.0f;
 	boundPosition.x = -2.5f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
@@ -847,6 +902,7 @@ void render()
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
+	// ====== Top and Bottom Bounds ======
 	boundPosition.x = 0.0f;
 	boundPosition.z = -3.0f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
@@ -858,6 +914,7 @@ void render()
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 36, 78);
 
+	// ==================================== Render the Ball ==================================
 	glBindVertexArray(vertexArrayObject2);
 
 	modelMatrix = glm::translate(glm::mat4(1.0f), ballPosition);
