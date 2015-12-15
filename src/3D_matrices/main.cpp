@@ -226,58 +226,63 @@ const GLfloat vertexData[] = {
 		 0.05f,   -0.25f,   3.0f,   0.0f,   0.0f,   0.0f,   1.0f, // 7
 
 #pragma endregion Left / Right Boundary
-
-#pragma region
-	// Front Side
-   -0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
-	0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 2
-	0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3 
-   -0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 4
-   -0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
-	0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3
-													  
-	// Back Side
-   -0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
-	0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 6
-	0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7 
-   -0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 8
-   -0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
-	0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7
-
-// Left Side
-	-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
-	-0.1f, -0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 4
-	-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
-	-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
-	-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
-	-0.1f,  0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
-
-// Right Sid
-	0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
-	0.1f, -0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 3
-	0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
-	0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
-	0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
-	0.1f,  0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 6
-
-// Top Side
-   -0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 1
-	0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
-   -0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
-	0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
-   -0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
-	0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 6
-
-// Bottom Side
-	0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
-   -0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 4
-   -0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
-	0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
-   -0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
-	0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 7
-#pragma endregion Ball
-
 };
+
+#pragma region 
+const GLfloat ballVertexData[] = {
+
+	//	  X			Y      Z       R       G       B       A
+	// Front Side
+		-0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
+		 0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 2
+		 0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3 
+		-0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 4
+		-0.1f,  0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 1
+		 0.1f, -0.1f, -0.1f, 0.0f, 1.0f, 0.0f, 1.0f, // 3
+
+												// Back Side
+		-0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
+		 0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 6
+		 0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7 
+		-0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 8
+		-0.1f,  0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 5
+		 0.1f, -0.1f, 0.1f, 1.0f, 1.0f, 1.0f, 1.0f, // 7
+
+											   // Left Side
+		-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+		-0.1f, -0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 4
+		-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+		-0.1f,  0.1f, -0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 1
+		-0.1f, -0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 8
+		-0.1f,  0.1f,  0.1f, 0.0f, 0.0f, 0.0f, 1.0f, // 5
+
+												 // Right Side
+		 0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
+		 0.1f, -0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 3
+		 0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
+		 0.1f,  0.1f, -0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 2
+		 0.1f, -0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 7
+		 0.1f,  0.1f,  0.1f,  0.0f,  0.0f,  1.0f,  1.0f, // 6
+
+													// Top Side
+		-0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 1
+		 0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
+		-0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
+		 0.1f,  0.1f,  -0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 2
+		-0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 5
+		 0.1f,  0.1f,   0.1f,  1.0f,  1.0f,  0.0f,  1.0f, // 6
+
+													 // Bottom Side
+		 0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
+		-0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 4
+		-0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
+		 0.1f,  -0.1f, -0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 3 
+		-0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 8
+		 0.1f,  -0.1f,  0.1f,  1.0f,  0.0f,  0.0f,  1.0f, // 7
+};
+
+#pragma endregion Ball Data
+
 // end::vertexData[]
 
 // tag::gameState[]
@@ -311,6 +316,9 @@ GLint projectionMatrixLocation;
 
 GLuint vertexDataBufferObject;
 GLuint vertexArrayObject;
+
+GLuint vertexDataBufferObject2;
+GLuint vertexArrayObject2;
 
 GLfloat rotateAngle = 1.0f;
 // end::GLVariables[]
@@ -526,6 +534,23 @@ void initializeVertexArrayObject()
 		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *) (3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
 		// end::glVertexAttribPointer[]
 
+	// ============================================= This is the second VAO -- To be used for the Ball ===================================================
+	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
+
+		glGenVertexArrays(1, &vertexArrayObject2); //create a Vertex Array Object
+		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject << std::endl;
+
+		glBindVertexArray(vertexArrayObject2); //make the just created vertexArrayObject the active one
+
+		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject2); //bind vertexDataBufferObject
+
+		glEnableVertexAttribArray(positionLocation); //enable attribute at index positionLocation
+		glEnableVertexAttribArray(vertexColorLocation); //enable attribute at index vertexColorLocation
+
+														// tag::glVertexAttribPointer[]
+		glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(0 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index positionLocation
+		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
+																																// end::glVertexAttribPointer[]
 	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
 
 	//cleanup
@@ -544,6 +569,14 @@ void initializeVertexBuffer()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	cout << "vertexDataBufferObject created OK! GLUint is: " << vertexDataBufferObject << std::endl;
+
+
+	glGenBuffers(1, &vertexDataBufferObject2);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject2);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(ballVertexData), ballVertexData, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	cout << "vertexDataBufferObject 2 created OK! GLUint is: " << vertexDataBufferObject2 << std::endl;
 
 	initializeVertexArrayObject();
 }
@@ -656,9 +689,12 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 	//WARNING - we should calculate an appropriate amount of time to simulate - not always use a constant amount of time
 			// see, for example, http://headerphile.blogspot.co.uk/2014/07/part-9-no-more-delays.html
 
-	position1 += float(simLength) * velocity1 ;
+	position1 += float(simLength) * velocity1;
 	position2 += float(simLength) * velocity2;
 	rotateAngle += simLength * 2;
+
+	ballVelocity.x = 1.0f;
+	ballPosition += float(simLength) * ballVelocity;
 
 	// Check for collisions between the bats and the boundaries
 
@@ -712,28 +748,24 @@ void render()
 	// Second bat here
 	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 36, 38);
+	glDrawArrays(GL_TRIANGLES, 36, 38 );
 
 	boundPosition.x = -2.5f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 72, 108);
+	glDrawArrays(GL_TRIANGLES, 72, 78);
 
 	boundPosition.x = 2.5f;
 	modelMatrix = glm::translate(glm::mat4(1.0f), boundPosition);
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 72, 108);
+	glDrawArrays(GL_TRIANGLES, 72, 78);
+
+	glBindVertexArray(vertexArrayObject2);
 
 	modelMatrix = glm::translate(glm::mat4(1.0f), ballPosition);
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 1, 0));
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 108, 144);
-
-
-	/*set modelMatrix and draw for triangle 2
-	modelMatrix = glm::translate(glm::mat4(1.0f), position2);
-	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
-	glDrawArrays(GL_TRIANGLES, 0, 3);*/
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	glBindVertexArray(0);
 
