@@ -3,5 +3,7 @@ in vec4 fragmentColor;
 out vec4 outputColor;
 void main()
 {
-	 outputColor = fragmentColor;
+	float ambientStrength = 0.5f;
+	vec4 ambient = ambientStrength * fragmentColor;
+	 outputColor = ambient;
 }

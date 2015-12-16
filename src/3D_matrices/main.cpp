@@ -35,6 +35,7 @@ using std::max;
 using std::string;
 // end::using[]
 
+void resetBall(bool isRedPoint);
 
 // tag::globalVariables[]
 std::string exeName;
@@ -380,6 +381,13 @@ GLuint vertexArrayObject3;
 GLfloat rotateAngle = 1.0f;
 GLint camView = 1; // This will determine which view the camera uses and will change on keypress
 GLfloat speed = 3.0f; // This is here so that I can change the speed of the paddles easier, it also allows me to invert the keypress controls when tracking the opposite bat
+
+GLfloat timeKeep = 0.0f;
+
+// Score tracking
+bool isRedPoint; // Who got that point? Gets passed to the reset ball function
+GLuint redScore = 0;
+GLuint blueScore = 0;
 // end::GLVariables[]
 
 
@@ -795,6 +803,8 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 	//WARNING - we should calculate an appropriate amount of time to simulate - not always use a constant amount of time
 			// see, for example, http://headerphile.blogspot.co.uk/2014/07/part-9-no-more-delays.html
 
+	timeKeep += simLength;
+
 	position1 += float(simLength) * velocity1;
 	position2 += float(simLength) * velocity2;
 	rotateAngle += simLength * 2;
@@ -816,9 +826,16 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 	if (ballPosition.x + 0.1 > 2.5 || ballPosition.x - 0.1 < -2.5)
 		ballVelocity.x *= -1.0f;
 
-	if (ballPosition.z + 0.1 > 3.0 || ballPosition.z - 0.1 < -3.0)
-		// This is a point scoring event -- TODO reset ball
-		ballVelocity.z *= -1.0f;
+	if (ballPosition.z + 0.1 > 3.0)
+	{
+		resetBall(true);
+	}
+	if (ballPosition.z - 0.1 < -3.0)
+	{
+		// Blue gets a point
+		resetBall(false);
+	}
+
 
 	// Check for collisions between the ball and the bats
 	// If the outer edges of the ball are within the outer edges of the bat X coord, and the Z coords cross then that is a hit
@@ -829,6 +846,34 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 
 }
 // end::updateSimulation[]
+
+void resetBall(bool isRedPoint)
+{
+	if (isRedPoint)
+		redScore++;
+	else
+		blueScore++;
+
+	ballPosition.x = 0;
+	ballPosition.z = 0;
+
+	/*glBindVertexArray(vertexArrayObject4); 
+	scorePosition.x = -0.95f;
+	// Red Score
+	for (int i = 0; i < redScore; i++)
+	{
+		
+	}
+
+	// Blue Score	
+	
+	scorePosition.x = 0.95f;
+	for (int i = 0; i < blueScore; i++)
+	{
+		
+	}*/
+
+}
 
 // tag::preRender[]
 void preRender()
