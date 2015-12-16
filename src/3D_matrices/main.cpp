@@ -752,16 +752,17 @@ void handleInput()
 								camView = 4;
 								break;
 							case 4:
+								camView = 5;
+								break;
+							case 5:
 								camView = 1;
 								break;
 							default:
 								camView = 1;
 								break;
 						}
-
 						break;
 				}
-
 			break;
 
 		case SDL_KEYUP:
@@ -902,23 +903,26 @@ void render()
 	// I learned Camera stuff from here http://learnopengl.com/#!Getting-started/Camera
 	switch (camView)
 	{
-	case 1:
-		speed = 3.0f;
-		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 1.5f, 4.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Standard behind blue view
-		break;
-	case 2:
-		speed = 3.0f;
-		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(2.0f, 3.5f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Above and look down view
-		break;
-	case 3:
-		speed = -3.0f;
-		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position1.x, position2.y + 1.5f, position1.z - 4.0f), position1, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Red -- Also the controls need inverting here
-		break;
-	case 4:
-		speed = 3.0f;
-
-		glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position2.x, position2.y + 1.5f, position2.z + 4.0f), position2, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Blue
-		break;
+		case 1:
+			speed = 3.0f;
+			glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(0.0f, 1.5f, 4.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Standard behind blue view
+			break;
+		case 2:
+			speed = 3.0f;
+			glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(2.0f, 3.5f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)))); // Above and look down view
+			break;
+		case 3:
+			speed = -3.0f;
+			glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position1.x, position2.y + 1.5f, position1.z - 4.0f), position1, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Red -- Also the controls need inverting here
+			break;
+		case 4:
+			speed = 3.0f;
+			glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(position2.x, position2.y + 1.5f, position2.z + 4.0f), position2, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track Blue
+			break;
+		case 5:
+			speed = 3.0f;
+			glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::lookAt(glm::vec3(ballPosition.x + 2.0f, ballPosition.y + 3.5f, ballPosition.z), ballPosition, glm::vec3(0.0f, 1.0f, 0.0f)))); // Track the ball
+			break;
 	}
 
 
