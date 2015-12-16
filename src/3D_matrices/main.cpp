@@ -335,6 +335,24 @@ const GLfloat ballVertexData[] = {
 #pragma endregion Ball Data
 };
 
+const GLfloat scoreVertexData[] = {
+	// Red score block
+	-0.025f,	0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.025f,    0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
+	 0.025f,   -0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3 
+	-0.025f,   -0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 4
+	-0.025f,	0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
+	 0.025f,   -0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 3
+
+	// Blue score block
+	-0.025f,	0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+	 0.025f,    0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 2
+	 0.025f,   -0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3 
+	-0.025f,   -0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
+	-0.025f,	0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
+	 0.025f,   -0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+};
+
 // end::vertexData[]
 
 // tag::gameState[]
@@ -350,6 +368,8 @@ glm::vec3 ballPosition = { 0.0f, 0.0f, 0.0f };
 glm::vec3 ballVelocity = { 2.0f, 0.0f, 1.0f};
 
 glm::vec3 boundPosition = { 0.0f, 0.0f , 0.0f };
+
+glm::vec3 scorePosition = { 0.0f, 0.0f, 0.0f };
 // end::gameState[]
 
 // tag::GLVariables[]
@@ -378,11 +398,15 @@ GLuint vertexArrayObject2;
 GLuint vertexDataBufferObject3;
 GLuint vertexArrayObject3;
 
+// These are for the score
+GLuint vertexDataBufferObject4;
+GLuint vertexArrayObject4;
+
 GLfloat rotateAngle = 1.0f;
 GLint camView = 1; // This will determine which view the camera uses and will change on keypress
 GLfloat speed = 3.0f; // This is here so that I can change the speed of the paddles easier, it also allows me to invert the keypress controls when tracking the opposite bat
 
-GLfloat timeKeep = 0.0f;
+glm::mat4 modelMatrix;
 
 // Score tracking
 bool isRedPoint; // Who got that point? Gets passed to the reset ball function
@@ -605,7 +629,7 @@ void initializeVertexArrayObject()
 	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
 
 		glGenVertexArrays(1, &vertexArrayObject2); //create a Vertex Array Object
-		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject << std::endl;
+		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject2 << std::endl;
 
 		glBindVertexArray(vertexArrayObject2); //make the just created vertexArrayObject the active one
 		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject2); //bind vertexDataBufferObject
@@ -623,7 +647,7 @@ void initializeVertexArrayObject()
 	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
 
 		glGenVertexArrays(1, &vertexArrayObject3); //create a Vertex Array Object
-		cout << "Vertex Array Object 2 created OK! GLUint is: " << vertexArrayObject << std::endl;
+		cout << "Vertex Array Object 3 created OK! GLUint is: " << vertexArrayObject3 << std::endl;
 
 		glBindVertexArray(vertexArrayObject3); //make the just created vertexArrayObject the active one
 		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject3); //bind vertexDataBufferObject
@@ -634,7 +658,26 @@ void initializeVertexArrayObject()
 														// tag::glVertexAttribPointer[]
 		glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(0 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index positionLocation
 		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
-																																// end::glVertexAttribPointer[]
+	// end::glVertexAttribPointer[]
+	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
+
+
+// ============================================= This is the fourth VAO -- To be used for the Score ===================================================
+	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
+
+		glGenVertexArrays(1, &vertexArrayObject4); //create a Vertex Array Object
+		cout << "Vertex Array Object 4 created OK! GLUint is: " << vertexArrayObject4 << std::endl;
+
+		glBindVertexArray(vertexArrayObject4); //make the just created vertexArrayObject the active one
+		glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject4); //bind vertexDataBufferObject
+
+		glEnableVertexAttribArray(positionLocation); //enable attribute at index positionLocation
+		glEnableVertexAttribArray(vertexColorLocation); //enable attribute at index vertexColorLocation
+
+														// tag::glVertexAttribPointer[]
+		glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(0 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index positionLocation
+		glVertexAttribPointer(vertexColorLocation, 4, GL_FLOAT, GL_FALSE, (7 * sizeof(GL_FLOAT)), (GLvoid *)(3 * sizeof(GLfloat))); //specify that position data contains four floats per vertex, and goes into attribute index vertexColorLocation
+																																	// end::glVertexAttribPointer[]
 	glBindVertexArray(0); //unbind the vertexArrayObject so we can't change it
 
 	//cleanup
@@ -667,7 +710,14 @@ void initializeVertexBuffer()
 	glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject3);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(boundsVertexData), boundsVertexData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	cout << "vertexDataBufferObject 3 created OK! GLUint is: " << vertexDataBufferObject2 << std::endl;
+	cout << "vertexDataBufferObject 3 created OK! GLUint is: " << vertexDataBufferObject3 << std::endl;
+
+	glGenBuffers(1, &vertexDataBufferObject4);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vertexDataBufferObject4);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(scoreVertexData), scoreVertexData, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	cout << "vertexDataBufferObject 4 created OK! GLUint is: " << vertexDataBufferObject4 << std::endl;
 
 	initializeVertexArrayObject();
 }
@@ -773,7 +823,6 @@ void handleInput()
 			if (!event.key.repeat)
 				switch (event.key.keysym.sym)
 				{
-
 					case SDLK_a:
 						// Reset bat 1 movement to stop it when key is released
 						velocity1.x += speed;
@@ -803,8 +852,6 @@ void updateSimulation(double simLength = 0.02) //update simulation with an amoun
 {
 	//WARNING - we should calculate an appropriate amount of time to simulate - not always use a constant amount of time
 			// see, for example, http://headerphile.blogspot.co.uk/2014/07/part-9-no-more-delays.html
-
-	timeKeep += simLength;
 
 	position1 += float(simLength) * velocity1;
 	position2 += float(simLength) * velocity2;
@@ -857,22 +904,6 @@ void resetBall(bool isRedPoint)
 
 	ballPosition.x = 0;
 	ballPosition.z = 0;
-
-	/*glBindVertexArray(vertexArrayObject4); 
-	scorePosition.x = -0.95f;
-	// Red Score
-	for (int i = 0; i < redScore; i++)
-	{
-		
-	}
-
-	// Blue Score	
-	
-	scorePosition.x = 0.95f;
-	for (int i = 0; i < blueScore; i++)
-	{
-		
-	}*/
 
 }
 
@@ -927,7 +958,7 @@ void render()
 
 
 	// ==================================== Render the Bats ================================
-	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), position1);
+	modelMatrix = glm::translate(glm::mat4(1.0f), position1);
 	//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 0, 0));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -967,9 +998,38 @@ void render()
 	glBindVertexArray(vertexArrayObject2);
 
 	modelMatrix = glm::translate(glm::mat4(1.0f), ballPosition);
-	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 0));
+	modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(1, 1, 1));
 	glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
 	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+	glUniformMatrix4fv(projectionMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
+	glUniformMatrix4fv(viewMatrixLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
+
+	glBindVertexArray(vertexArrayObject4);
+
+	// Red Score
+	scorePosition.y = 0.95f;
+	scorePosition.x = -0.95f;
+	for (int i = 0; i < redScore; i++)
+	{
+		modelMatrix = glm::translate(glm::mat4(1.0f), scorePosition);
+		//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 0));
+		glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		scorePosition.x += 0.08f;
+	}
+
+	// Blue Score	
+	scorePosition.x = 0.95f;
+	for (int i = 0; i < blueScore; i++)
+	{
+		modelMatrix = glm::translate(glm::mat4(1.0f), scorePosition);
+		//modelMatrix = glm::rotate(modelMatrix, rotateAngle, glm::vec3(0, 1, 0));
+		glUniformMatrix4fv(modelMatrixLocation, 1, false, glm::value_ptr(modelMatrix));
+		glDrawArrays(GL_TRIANGLES, 6, 12);
+		scorePosition.x -= 0.08f;
+	}
 
 	glBindVertexArray(0);
 
