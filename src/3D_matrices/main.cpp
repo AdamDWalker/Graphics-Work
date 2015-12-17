@@ -231,12 +231,13 @@ const GLfloat boundsVertexData[] = {
 
 #pragma region
 // ============================= Top / Bottom Boundary ===========================
-	-2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 1
-	 2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 2
-	 2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 3 
-	-2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 4
-	-2.5f,  0.5f,  -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 1
-	 2.5f, -0.25f, -0.1f,  0.0f,  0.0f,  0.0f, 1.0f, // 3
+// Front Side
+	-2.5f,  0.5f,  -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 1
+	 2.5f,  0.5f,  -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 2
+	 2.5f, -0.25f, -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 3 
+	-2.5f, -0.25f, -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 4
+	-2.5f,  0.5f,  -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 1
+	 2.5f, -0.25f, -0.1f,  0.2f,  0.2f,  0.2f, 1.0f, // 3
 
 // Back Side
 	-2.5f,  0.5f,  0.1f, 0.2f, 0.2f, 0.2f, 1.0f, // 5
@@ -336,6 +337,7 @@ const GLfloat ballVertexData[] = {
 };
 
 const GLfloat scoreVertexData[] = {
+#pragma region
 	// Red score block
 	-0.025f,	0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 1
 	 0.025f,    0.025f,   0.0f,   1.0f,   0.0f,   0.0f,   1.0f, // 2
@@ -351,6 +353,7 @@ const GLfloat scoreVertexData[] = {
 	-0.025f,   -0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 4
 	-0.025f,	0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 1
 	 0.025f,   -0.025f,   0.0f,   0.0f,   0.0f,   1.0f,   1.0f, // 3
+#pragma endregion Score Blocks
 };
 
 // end::vertexData[]
@@ -410,6 +413,7 @@ glm::mat4 modelMatrix;
 
 // Score tracking
 bool isRedPoint; // Who got that point? Gets passed to the reset ball function
+bool gameOver = false;
 GLuint redScore = 0;
 GLuint blueScore = 0;
 // end::GLVariables[]
@@ -901,6 +905,13 @@ void resetBall(bool isRedPoint)
 		redScore++;
 	else
 		blueScore++;
+
+	if (redScore >= 5 || blueScore >= 5)
+	{
+		gameOver = true;
+		ballVelocity.x = 0.0f;
+		ballVelocity.z = 0.0f;
+	}
 
 	ballPosition.x = 0;
 	ballPosition.z = 0;
